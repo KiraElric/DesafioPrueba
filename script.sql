@@ -115,6 +115,8 @@ INSERT INTO detalle (numero_factura,id_producto,cantidad,total_producto) VALUES 
 SELECT nombre FROM cliente WHERE id_cliente=(SELECT id_cliente FROM factura ORDER BY precio_total DESC LIMIT 1);
 
 --¿Que cliente pago sobre 100 de monto?
+SELECT DISTINCT cl.nombre FROM cliente AS cl INNER JOIN factura AS fc ON cl.id_cliente=fc.id_cliente
+WHERE subtotal>100;
 
 
 --¿Cuantos clientes han comprado el producto 6?
