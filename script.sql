@@ -48,7 +48,7 @@ CREATE TABLE detalle(
   FOREIGN KEY (id_producto) REFERENCES producto(id_producto)
 );
 
---Insertar registros
+--Insertar registros en tablas
 -- 5 Clientes
 INSERT INTO cliente (nombre,rut,direccion) VALUES ('Kirios Hapteem',10345678,'Avenida Siempreviva 1313');
 INSERT INTO cliente (nombre,rut,direccion) VALUES ('Harry Potter',7548236,'Calle falsa 123');
@@ -109,3 +109,15 @@ INSERT INTO detalle (numero_factura,id_producto,cantidad,total_producto) VALUES 
 INSERT INTO detalle (numero_factura,id_producto,cantidad,total_producto) VALUES (9,6,12,144000);
 INSERT INTO detalle (numero_factura,id_producto,cantidad,total_producto) VALUES (9,8,3,84000);
 INSERT INTO detalle (numero_factura,id_producto,cantidad,total_producto) VALUES (10,7,5,75000);
+
+--Consultas
+--¿Qué cliente realizo la compra mas cara?
+SELECT nombre FROM cliente WHERE id_cliente=(SELECT id_cliente FROM factura ORDER BY precio_total DESC LIMIT 1);
+
+--¿Que cliente pago sobre 100 de monto?
+
+
+--¿Cuantos clientes han comprado el producto 6?
+SELECT COUNT (cliente) FROM (SELECT DISTINCT cl.id_cliente AS cliente FROM cliente AS cl 
+INNER JOIN factura AS fc ON cl.id_cliente=fc.id_cliente 
+INNER JOIN detalle AS dt ON fc.numero_factura=dt.numero_factura WHERE dt.id_producto=6) AS clientes;
