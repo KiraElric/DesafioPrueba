@@ -1,0 +1,39 @@
+Factura(**#numero_factura**, fecha, subtotal, IVA, precio_total, nombre_cliente, rut_cliente, direccion_cliente, {nombre_producto, descripcion_producto, valor unitario, cantidad_producto, total_producto, nombre_categoria, descripcion_categoria})
+
+
+
+NORMALIZACION
+
+1FN:
+
+​		Factura(**#numero_factura**,fecha, subtotal, IVA, precio_total, nombre_cliente, rut_cliente, direccion_cliente)
+
+​		Producto(**#id_producto**, *id_categoria*, nombre_producto, descripcion_producto, valor unitario)
+
+​		Categoria(**#id_categoria**, nombre_categoria, descripción_categoria)
+
+​		Detalle(*id_producto*, *numero_factura*, cantidad_producto, total_producto)
+
+2FN:
+
+​		Factura(**#numero_factura**,fecha, subtotal, IVA, precio_total)
+
+​		Cliente(**#id_cliente**, nombre_cliente, rut_cliente, direccion_cliente)
+
+​		Producto(**#id_producto**, *id_categoria*, nombre_producto, descripcion_producto, valor unitario)
+
+​		Categoria(**#id_categoria**, nombre_categoria, descripción_categoria)
+
+​		Detalle(*numero_factura*, *id_producto*,  cantidad_producto, total_producto)
+
+3FN:
+
+​		Factura(**#numero_factura**,fecha, subtotal, IVA, precio_total)
+
+​		Cliente(**#id_cliente**, nombre_cliente, rut_cliente, direccion_cliente)
+
+​		Producto(**#id_producto**, *id_categoria*, nombre_producto, descripcion_producto, valor unitario)
+
+​		Categoria(**#id_categoria**, nombre_categoria, descripción_categoria)
+
+​		Detalle(*numero_factura*, *id_producto*,  cantidad_producto, total_producto)
